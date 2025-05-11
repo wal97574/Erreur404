@@ -8,18 +8,23 @@
     <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #ecf0f1;">
         <TextField fx:id="coursIdField" promptText="Cours ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
         <TextField fx:id="userIdField" promptText="User ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <TextField fx:id="startTimeField" promptText="Start Time (yyyy-MM-ddTHH:mm)" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <TextField fx:id="endTimeField" promptText="End Time (yyyy-MM-ddTHH:mm)" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="startTimeField" promptText="Start Date (yyyy-MM-dd)" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="endTimeField" promptText="End Date (yyyy-MM-dd)" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
         <TextField fx:id="statusField" promptText="Status" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <Button text="Add Emploi" onAction="#handleAddEmploi" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+        <HBox spacing="10">
+            <Button text="Back to Home" onAction="#handleBackToHome" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <Button text="Add Emploi" onAction="#handleAddEmploi" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+            <Button text="Update Emploi" onAction="#handleUpdateEmploi" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+            <Button text="Delete Emploi" onAction="#handleDeleteEmploi" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        </HBox>
         <TableView fx:id="emploiTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7;">
             <columns>
-                <TableColumn text="ID" />
-                <TableColumn text="Cours ID" />
-                <TableColumn text="User ID" />
-                <TableColumn text="Start Time" />
-                <TableColumn text="End Time" />
-                <TableColumn text="Status" />
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="coursIdColumn" text="Cours ID" />
+                <TableColumn fx:id="userIdColumn" text="User ID" />
+                <TableColumn fx:id="startTimeColumn" text="Start Date" />
+                <TableColumn fx:id="endTimeColumn" text="End Date" />
+                <TableColumn fx:id="statusColumn" text="Status" />
             </columns>
         </TableView>
     </VBox>

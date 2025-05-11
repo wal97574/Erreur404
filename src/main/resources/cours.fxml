@@ -10,14 +10,19 @@
         <TextField fx:id="trainerIdField" promptText="Trainer ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
         <TextField fx:id="maxParticipantsField" promptText="Max Participants" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
         <TextField fx:id="durationField" promptText="Duration Minutes" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <Button text="Add Cours" onAction="#handleAddCours" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+        <HBox spacing="10">
+            <Button text="Back to Home" onAction="#handleBackToHome" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <Button text="Add Cours" onAction="#handleAddCours" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+            <Button text="Update Cours" onAction="#handleUpdateCours" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+            <Button text="Delete Cours" onAction="#handleDeleteCours" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        </HBox>
         <TableView fx:id="coursTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7;">
             <columns>
-                <TableColumn text="ID" />
-                <TableColumn text="Description" />
-                <TableColumn text="Trainer ID" />
-                <TableColumn text="Max Participants" />
-                <TableColumn text="Duration (Minutes)" />
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="descriptionColumn" text="Description" />
+                <TableColumn fx:id="trainerIdColumn" text="Trainer ID" />
+                <TableColumn fx:id="maxParticipantsColumn" text="Max Participants" />
+                <TableColumn fx:id="durationColumn" text="Duration (Minutes)" />
             </columns>
         </TableView>
     </VBox>
