@@ -11,13 +11,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tn.esprit.entity.Emploi;
 import tn.esprit.interfaces.IEmploiService;
+import tn.esprit.service.CoursService;
 import tn.esprit.service.EmploiService;
+import tn.esprit.service.GoogleCalendarService;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 public class EmploiController {
-    private IEmploiService emploiService = new EmploiService();
+    private IEmploiService emploiService;
 
     @FXML private TextField coursIdField;
     @FXML private TextField userIdField;
@@ -31,6 +33,13 @@ public class EmploiController {
     @FXML private TableColumn<Emploi, LocalDate> startTimeColumn;
     @FXML private TableColumn<Emploi, LocalDate> endTimeColumn;
     @FXML private TableColumn<Emploi, String> statusColumn;
+
+    public EmploiController() {
+        // Initialize dependencies
+        CoursService coursService = new CoursService();
+        GoogleCalendarService googleCalendarService = new GoogleCalendarService(coursService);
+        this.emploiService = new EmploiService(googleCalendarService);
+    }
 
     @FXML
     private void initialize() {
@@ -109,14 +118,12 @@ public class EmploiController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     @FXML
     private void handleBackToHome() {
         try {
-            // Load the home screen FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
             Parent homeRoot = loader.load();
-
-            // Get the current stage and set the new scene
             Stage stage = (Stage) emploiTable.getScene().getWindow();
             stage.setScene(new Scene(homeRoot));
         } catch (IOException e) {
