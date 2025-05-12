@@ -17,6 +17,8 @@
             <Button text="Update Emploi" onAction="#handleUpdateEmploi" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
             <Button text="Delete Emploi" onAction="#handleDeleteEmploi" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
         </HBox>
+        <!-- Add search bar -->
+        <TextField fx:id="searchField" promptText="Search..." style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
         <TableView fx:id="emploiTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7;">
             <columns>
                 <TableColumn fx:id="idColumn" text="ID" />

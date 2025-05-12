@@ -2,6 +2,8 @@ package tn.esprit.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +28,7 @@ public class EmploiController {
     @FXML private TextField startTimeField;
     @FXML private TextField endTimeField;
     @FXML private TextField statusField;
+    @FXML private TextField searchField;
     @FXML private TableView<Emploi> emploiTable;
     @FXML private TableColumn<Emploi, Integer> idColumn;
     @FXML private TableColumn<Emploi, Integer> coursIdColumn;
@@ -43,6 +46,7 @@ public class EmploiController {
 
     @FXML
     private void initialize() {
+        // Bind columns to Emploi properties
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         coursIdColumn.setCellValueFactory(new PropertyValueFactory<>("coursId"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -50,7 +54,32 @@ public class EmploiController {
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        refreshEmploiList();
+        // Load data into the TableView with search and sort
+        ObservableList<Emploi> list = FXCollections.observableArrayList(emploiService.getAllEmplois());
+        FilteredList<Emploi> filteredList = new FilteredList<>(list, b -> true);
+
+        // Add search functionality for all fields
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(emploi -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return String.valueOf(emploi.getId()).toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(emploi.getCoursId()).toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(emploi.getUserId()).toLowerCase().contains(lowerCaseFilter)
+                        || emploi.getStartTime().toString().toLowerCase().contains(lowerCaseFilter)
+                        || emploi.getEndTime().toString().toLowerCase().contains(lowerCaseFilter)
+                        || emploi.getStatus().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        // Add sorting functionality
+        SortedList<Emploi> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(emploiTable.comparatorProperty());
+
+        // Set the sorted and filtered list to the TableView
+        emploiTable.setItems(sortedList);
     }
 
     @FXML

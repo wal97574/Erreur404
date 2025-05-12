@@ -2,6 +2,8 @@ package tn.esprit.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +24,7 @@ public class CoursController {
     @FXML private TextField trainerIdField;
     @FXML private TextField maxParticipantsField;
     @FXML private TextField durationField;
+    @FXML private TextField searchField;
     @FXML private TableView<Cours> coursTable;
     @FXML private TableColumn<Cours, Integer> idColumn;
     @FXML private TableColumn<Cours, String> descriptionColumn;
@@ -61,8 +64,30 @@ public class CoursController {
             }
         });
 
-        // Load data into the TableView
-        refreshCoursList();
+        // Load data into the TableView with search and sort
+        ObservableList<Cours> list = FXCollections.observableArrayList(coursService.getAllCours());
+        FilteredList<Cours> filteredList = new FilteredList<>(list, b -> true);
+
+        // Add search functionality
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(cours -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return cours.getDescription().toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(cours.getTrainerId()).contains(lowerCaseFilter)
+                        || String.valueOf(cours.getMaxParticipants()).contains(lowerCaseFilter)
+                        || String.valueOf(cours.getDurationMinutes()).contains(lowerCaseFilter);
+            });
+        });
+
+        // Add sorting functionality
+        SortedList<Cours> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(coursTable.comparatorProperty());
+
+        // Set the sorted and filtered list to the TableView
+        coursTable.setItems(sortedList);
     }
 
     @FXML
