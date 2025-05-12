@@ -38,7 +38,6 @@ public class EmploiController {
     @FXML private TableColumn<Emploi, String> statusColumn;
 
     public EmploiController() {
-        // Initialize dependencies
         CoursService coursService = new CoursService();
         GoogleCalendarService googleCalendarService = new GoogleCalendarService(coursService);
         this.emploiService = new EmploiService(googleCalendarService);
@@ -46,7 +45,6 @@ public class EmploiController {
 
     @FXML
     private void initialize() {
-        // Bind columns to Emploi properties
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         coursIdColumn.setCellValueFactory(new PropertyValueFactory<>("coursId"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -54,11 +52,9 @@ public class EmploiController {
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // Load data into the TableView with search and sort
         ObservableList<Emploi> list = FXCollections.observableArrayList(emploiService.getAllEmplois());
         FilteredList<Emploi> filteredList = new FilteredList<>(list, b -> true);
 
-        // Add search functionality for all fields
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(emploi -> {
                 if (newValue == null || newValue.isEmpty()) {
@@ -74,17 +70,16 @@ public class EmploiController {
             });
         });
 
-        // Add sorting functionality
         SortedList<Emploi> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(emploiTable.comparatorProperty());
-
-        // Set the sorted and filtered list to the TableView
         emploiTable.setItems(sortedList);
     }
 
     @FXML
     private void handleAddEmploi() {
         try {
+            if (!isInputValid()) return;
+
             Emploi emploi = new Emploi(
                     0,
                     Integer.parseInt(coursIdField.getText()),
@@ -96,7 +91,7 @@ public class EmploiController {
             emploiService.addEmploi(emploi);
             refreshEmploiList();
         } catch (Exception e) {
-            showError("Invalid input. Please check your data.");
+            showError("An error occurred while adding the emploi.");
         }
     }
 
@@ -104,19 +99,22 @@ public class EmploiController {
     private void handleUpdateEmploi() {
         try {
             Emploi selectedEmploi = emploiTable.getSelectionModel().getSelectedItem();
-            if (selectedEmploi != null) {
-                selectedEmploi.setCoursId(Integer.parseInt(coursIdField.getText()));
-                selectedEmploi.setUserId(Integer.parseInt(userIdField.getText()));
-                selectedEmploi.setStartTime(LocalDate.parse(startTimeField.getText()));
-                selectedEmploi.setEndTime(LocalDate.parse(endTimeField.getText()));
-                selectedEmploi.setStatus(statusField.getText());
-                emploiService.updateEmploi(selectedEmploi);
-                refreshEmploiList();
-            } else {
+            if (selectedEmploi == null) {
                 showError("No emploi selected. Please select an emploi to update.");
+                return;
             }
+
+            if (!isInputValid()) return;
+
+            selectedEmploi.setCoursId(Integer.parseInt(coursIdField.getText()));
+            selectedEmploi.setUserId(Integer.parseInt(userIdField.getText()));
+            selectedEmploi.setStartTime(LocalDate.parse(startTimeField.getText()));
+            selectedEmploi.setEndTime(LocalDate.parse(endTimeField.getText()));
+            selectedEmploi.setStatus(statusField.getText());
+            emploiService.updateEmploi(selectedEmploi);
+            refreshEmploiList();
         } catch (Exception e) {
-            showError("Invalid input. Please check your data.");
+            showError("An error occurred while updating the emploi.");
         }
     }
 
@@ -124,14 +122,49 @@ public class EmploiController {
     private void handleDeleteEmploi() {
         try {
             Emploi selectedEmploi = emploiTable.getSelectionModel().getSelectedItem();
-            if (selectedEmploi != null) {
-                emploiService.deleteEmploi(selectedEmploi.getId());
-                refreshEmploiList();
-            } else {
+            if (selectedEmploi == null) {
                 showError("No emploi selected. Please select an emploi to delete.");
+                return;
             }
+            emploiService.deleteEmploi(selectedEmploi.getId());
+            refreshEmploiList();
         } catch (Exception e) {
             showError("An error occurred while deleting the emploi.");
+        }
+    }
+
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        if (coursIdField.getText() == null || !coursIdField.getText().matches("\\d+")) {
+            errorMessage += "Cours ID must be a valid integer.\n";
+        }
+        if (userIdField.getText() == null || !userIdField.getText().matches("\\d+")) {
+            errorMessage += "User ID must be a valid integer.\n";
+        }
+        if (startTimeField.getText() == null || !isValidDate(startTimeField.getText())) {
+            errorMessage += "Start Date must be in the format yyyy-MM-dd.\n";
+        }
+        if (endTimeField.getText() == null || !isValidDate(endTimeField.getText())) {
+            errorMessage += "End Date must be in the format yyyy-MM-dd.\n";
+        }
+        if (statusField.getText() == null || statusField.getText().trim().isEmpty()) {
+            errorMessage += "Status cannot be empty.\n";
+        }
+
+        if (!errorMessage.isEmpty()) {
+            showError(errorMessage);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidDate(String date) {
+        try {
+            LocalDate.parse(date);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 

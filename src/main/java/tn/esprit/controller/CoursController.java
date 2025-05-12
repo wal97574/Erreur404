@@ -35,14 +35,12 @@ public class CoursController {
 
     @FXML
     private void initialize() {
-        // Bind columns to Cours properties
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         trainerIdColumn.setCellValueFactory(new PropertyValueFactory<>("trainerId"));
         maxParticipantsColumn.setCellValueFactory(new PropertyValueFactory<>("maxParticipants"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("durationMinutes"));
 
-        // Add PDF button column
         pdfColumn.setCellFactory(param -> new TableCell<>() {
             private final Button pdfButton = new Button("Generate PDF");
 
@@ -64,11 +62,9 @@ public class CoursController {
             }
         });
 
-        // Load data into the TableView with search and sort
         ObservableList<Cours> list = FXCollections.observableArrayList(coursService.getAllCours());
         FilteredList<Cours> filteredList = new FilteredList<>(list, b -> true);
 
-        // Add search functionality
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(cours -> {
                 if (newValue == null || newValue.isEmpty()) {
@@ -82,17 +78,16 @@ public class CoursController {
             });
         });
 
-        // Add sorting functionality
         SortedList<Cours> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(coursTable.comparatorProperty());
-
-        // Set the sorted and filtered list to the TableView
         coursTable.setItems(sortedList);
     }
 
     @FXML
     private void handleAddCours() {
         try {
+            if (!isInputValid()) return;
+
             Cours cours = new Cours(
                     0,
                     descriptionField.getText(),
@@ -103,7 +98,7 @@ public class CoursController {
             coursService.addCours(cours);
             refreshCoursList();
         } catch (Exception e) {
-            showError("Invalid input. Please check your data.");
+            showError("An error occurred while adding the course.");
         }
     }
 
@@ -111,18 +106,21 @@ public class CoursController {
     private void handleUpdateCours() {
         try {
             Cours selectedCours = coursTable.getSelectionModel().getSelectedItem();
-            if (selectedCours != null) {
-                selectedCours.setDescription(descriptionField.getText());
-                selectedCours.setTrainerId(Integer.parseInt(trainerIdField.getText()));
-                selectedCours.setMaxParticipants(Integer.parseInt(maxParticipantsField.getText()));
-                selectedCours.setDurationMinutes(Integer.parseInt(durationField.getText()));
-                coursService.updateCours(selectedCours);
-                refreshCoursList();
-            } else {
+            if (selectedCours == null) {
                 showError("No course selected. Please select a course to update.");
+                return;
             }
+
+            if (!isInputValid()) return;
+
+            selectedCours.setDescription(descriptionField.getText());
+            selectedCours.setTrainerId(Integer.parseInt(trainerIdField.getText()));
+            selectedCours.setMaxParticipants(Integer.parseInt(maxParticipantsField.getText()));
+            selectedCours.setDurationMinutes(Integer.parseInt(durationField.getText()));
+            coursService.updateCours(selectedCours);
+            refreshCoursList();
         } catch (Exception e) {
-            showError("Invalid input. Please check your data.");
+            showError("An error occurred while updating the course.");
         }
     }
 
@@ -130,15 +128,38 @@ public class CoursController {
     private void handleDeleteCours() {
         try {
             Cours selectedCours = coursTable.getSelectionModel().getSelectedItem();
-            if (selectedCours != null) {
-                coursService.deleteCours(selectedCours.getId());
-                refreshCoursList();
-            } else {
+            if (selectedCours == null) {
                 showError("No course selected. Please select a course to delete.");
+                return;
             }
+            coursService.deleteCours(selectedCours.getId());
+            refreshCoursList();
         } catch (Exception e) {
             showError("An error occurred while deleting the course.");
         }
+    }
+
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        if (descriptionField.getText() == null || descriptionField.getText().trim().isEmpty()) {
+            errorMessage += "Description cannot be empty.\n";
+        }
+        if (trainerIdField.getText() == null || !trainerIdField.getText().matches("\\d+")) {
+            errorMessage += "Trainer ID must be a valid integer.\n";
+        }
+        if (maxParticipantsField.getText() == null || !maxParticipantsField.getText().matches("\\d+")) {
+            errorMessage += "Max Participants must be a valid integer.\n";
+        }
+        if (durationField.getText() == null || !durationField.getText().matches("\\d+")) {
+            errorMessage += "Duration must be a valid integer.\n";
+        }
+
+        if (!errorMessage.isEmpty()) {
+            showError(errorMessage);
+            return false;
+        }
+        return true;
     }
 
     private void handleGeneratePdf(Cours cours) {
@@ -171,11 +192,8 @@ public class CoursController {
     @FXML
     private void handleBackToHome() {
         try {
-            // Load the home screen FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
             Parent homeRoot = loader.load();
-
-            // Get the current stage and set the new scene
             Stage stage = (Stage) coursTable.getScene().getWindow();
             stage.setScene(new Scene(homeRoot));
         } catch (IOException e) {
