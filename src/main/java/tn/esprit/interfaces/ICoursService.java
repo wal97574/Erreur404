@@ -10,4 +10,7 @@ public interface ICoursService {
     void deleteCours(int id);
     List<Cours> getAllCours();
     Cours getCoursById(int id);
+
+    // New method for generating a PDF for a course
+    void generateCoursPdf(Cours cours, String filePath);
 }

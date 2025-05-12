@@ -1,10 +1,13 @@
 package tn.esprit.service;
 
 // CoursService.java
+import com.itextpdf.kernel.pdf.PdfWriter;
 import tn.esprit.entity.Cours;
 import tn.esprit.interfaces.ICoursService;
 import tn.esprit.utils.DatabaseConnection;
 
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import java.sql.*;
 import java.util.*;
 
@@ -81,5 +84,20 @@ public class CoursService implements ICoursService {
             }
         } catch (SQLException e) { e.printStackTrace(); }
         return null;
+    }
+    public void generateCoursPdf(Cours cours, String filePath) {
+        try (PdfWriter writer = new PdfWriter(filePath);
+             Document document = new Document(new com.itextpdf.kernel.pdf.PdfDocument(writer))) {
+
+            document.add(new Paragraph("Course Details"));
+            document.add(new Paragraph("ID: " + cours.getId()));
+            document.add(new Paragraph("Description: " + cours.getDescription()));
+            document.add(new Paragraph("Trainer ID: " + cours.getTrainerId()));
+            document.add(new Paragraph("Max Participants: " + cours.getMaxParticipants()));
+            document.add(new Paragraph("Duration (Minutes): " + cours.getDurationMinutes()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -18,6 +18,10 @@
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
         </repository>
+        <repository>
+            <id>itext</id>
+            <url>https://repo.itextsupport.com/releases</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -52,6 +56,16 @@
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-calendar</artifactId>
             <version>v3-rev20250404-2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>7.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
+            <version>7.2.5</version>
         </dependency>
     </dependencies>
 

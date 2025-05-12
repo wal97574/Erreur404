@@ -4,8 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tn.esprit.controller.CoursController">
-    <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #ecf0f1;">
+            fx:controller="tn.esprit.controller.CoursController"
+            prefWidth="600" prefHeight="600">
+    <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #ecf0f1;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <TextField fx:id="descriptionField" promptText="Description" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
         <TextField fx:id="trainerIdField" promptText="Trainer ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
         <TextField fx:id="maxParticipantsField" promptText="Max Participants" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
@@ -23,6 +24,7 @@
                 <TableColumn fx:id="trainerIdColumn" text="Trainer ID" />
                 <TableColumn fx:id="maxParticipantsColumn" text="Max Participants" />
                 <TableColumn fx:id="durationColumn" text="Duration (Minutes)" />
+                <TableColumn fx:id="pdfColumn" text="Actions" />
             </columns>
         </TableView>
     </VBox>

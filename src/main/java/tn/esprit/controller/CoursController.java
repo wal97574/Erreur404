@@ -28,6 +28,7 @@ public class CoursController {
     @FXML private TableColumn<Cours, Integer> trainerIdColumn;
     @FXML private TableColumn<Cours, Integer> maxParticipantsColumn;
     @FXML private TableColumn<Cours, Integer> durationColumn;
+    @FXML private TableColumn<Cours, Void> pdfColumn;
 
     @FXML
     private void initialize() {
@@ -37,6 +38,28 @@ public class CoursController {
         trainerIdColumn.setCellValueFactory(new PropertyValueFactory<>("trainerId"));
         maxParticipantsColumn.setCellValueFactory(new PropertyValueFactory<>("maxParticipants"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("durationMinutes"));
+
+        // Add PDF button column
+        pdfColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button pdfButton = new Button("Generate PDF");
+
+            {
+                pdfButton.setOnAction(event -> {
+                    Cours cours = getTableView().getItems().get(getIndex());
+                    handleGeneratePdf(cours);
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(pdfButton);
+                }
+            }
+        });
 
         // Load data into the TableView
         refreshCoursList();
@@ -93,6 +116,12 @@ public class CoursController {
         }
     }
 
+    private void handleGeneratePdf(Cours cours) {
+        String filePath = "Cours_" + cours.getId() + ".pdf";
+        coursService.generateCoursPdf(cours, filePath);
+        showInfo("PDF generated successfully at: " + filePath);
+    }
+
     private void refreshCoursList() {
         ObservableList<Cours> list = FXCollections.observableArrayList(coursService.getAllCours());
         coursTable.setItems(list);
@@ -105,6 +134,15 @@ public class CoursController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    private void showInfo(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     @FXML
     private void handleBackToHome() {
         try {
