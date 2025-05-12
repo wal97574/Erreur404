@@ -1,7 +1,10 @@
 package tn.esprit.service;
 
 // CoursService.java
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.properties.TextAlignment;
 import tn.esprit.entity.Cours;
 import tn.esprit.interfaces.ICoursService;
 import tn.esprit.utils.DatabaseConnection;
@@ -89,12 +92,32 @@ public class CoursService implements ICoursService {
         try (PdfWriter writer = new PdfWriter(filePath);
              Document document = new Document(new com.itextpdf.kernel.pdf.PdfDocument(writer))) {
 
-            document.add(new Paragraph("Course Details"));
-            document.add(new Paragraph("ID: " + cours.getId()));
-            document.add(new Paragraph("Description: " + cours.getDescription()));
-            document.add(new Paragraph("Trainer ID: " + cours.getTrainerId()));
-            document.add(new Paragraph("Max Participants: " + cours.getMaxParticipants()));
-            document.add(new Paragraph("Duration (Minutes): " + cours.getDurationMinutes()));
+            // Gym theme colors
+            Color headerColor = new DeviceRgb(52, 152, 219); // Blue
+            Color textColor = new DeviceRgb(44, 62, 80); // Dark gray
+
+            // Add title
+            Paragraph title = new Paragraph("Gym Class Details")
+                    .setFontSize(20)
+                    .setBold()
+                    .setFontColor(headerColor)
+                    .setTextAlignment(TextAlignment.CENTER);
+            document.add(title);
+
+            // Add course details
+            document.add(new Paragraph("ID: " + cours.getId()).setFontColor(textColor));
+            document.add(new Paragraph("Description: " + cours.getDescription()).setFontColor(textColor));
+            document.add(new Paragraph("Trainer ID: " + cours.getTrainerId()).setFontColor(textColor));
+            document.add(new Paragraph("Max Participants: " + cours.getMaxParticipants()).setFontColor(textColor));
+            document.add(new Paragraph("Duration (Minutes): " + cours.getDurationMinutes()).setFontColor(textColor));
+
+            // Add footer
+            Paragraph footer = new Paragraph("Stay Fit, Stay Healthy!")
+                    .setFontSize(12)
+                    .setFontColor(headerColor)
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setMarginTop(20);
+            document.add(footer);
 
         } catch (Exception e) {
             e.printStackTrace();
