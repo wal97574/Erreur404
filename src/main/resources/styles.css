@@ -1,0 +1,159 @@
+/* Global Styles */
+.root {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Text Styles */
+.text {
+    -fx-fill: #2b579a;
+}
+
+/* Button Styles */
+.button {
+    -fx-background-color: #2b579a;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 8 16;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #1e3f6f;
+    -fx-text-fill: #ffffff;
+}
+
+.button .text {
+    -fx-fill: #ffffff;
+}
+
+/* TextField and PasswordField Styles */
+.text-field, .password-field {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 4;
+    -fx-padding: 8;
+    -fx-background-radius: 4;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #2b579a;
+}
+
+.text-field:error, .password-field:error {
+    -fx-border-color: #ff0000;
+}
+
+/* ComboBox Styles */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 8;
+}
+
+/* TableView Styles */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.table-view .column-header,
+.table-view .column-header-background,
+.table-view .column-header-background .filler {
+    -fx-background-color: #2b579a;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #ffffff !important;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.table-view .column-header .text {
+    -fx-fill: #ffffff !important;
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-padding: 8;
+    -fx-border-color: #f0f0f0;
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+
+/* Hyperlink Styles */
+.hyperlink {
+    -fx-text-fill: #2b579a;
+    -fx-border-color: transparent;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #1e3f6f;
+    -fx-underline: true;
+}
+
+/* Alert Dialog Styles */
+.dialog-pane {
+    -fx-background-color: white;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #2b579a;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white;
+}
+
+/* VBox and HBox Styles */
+.vbox, .hbox {
+    -fx-spacing: 10;
+    -fx-padding: 20;
+}
+
+/* AnchorPane Styles */
+.anchor-pane {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Popup Window Styles */
+.stage {
+    -fx-background-color: white;
+}
+
+/* Call-to-action button style */
+.cta-button {
+    -fx-background-color: #ff9800;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 24;
+    -fx-effect: dropshadow(gaussian, #ff980055, 8, 0.2, 0, 2);
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 8;
+    -fx-transition: background-color 0.2s;
+}
+.cta-button:hover {
+    -fx-background-color: #fb8c00;
+} 
