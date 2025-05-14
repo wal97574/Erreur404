@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.UserFormController">
+   <children>
+      <VBox alignment="CENTER" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Text fx:id="txtTitle" fill="#2b579a" strokeType="OUTSIDE" strokeWidth="0.0" text="Add User" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="tfNom" prefWidth="300.0" promptText="Nom" />
+            <TextField fx:id="tfPrenom" prefWidth="300.0" promptText="Prenom" />
+            <TextField fx:id="tfEmail" prefWidth="300.0" promptText="Email" />
+            <PasswordField fx:id="tfPassword" prefWidth="300.0" promptText="Password" />
+            <TextField fx:id="tfTelephone" prefWidth="300.0" promptText="Telephone" />
+            <ComboBox fx:id="cbSexe" prefWidth="300.0" promptText="Select Sexe" />
+            <ComboBox fx:id="cbRole" prefWidth="300.0" promptText="Select Role" />
+            <TextField fx:id="tfSalaire" prefWidth="300.0" promptText="Salaire" visible="false" />
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#handleSave" prefWidth="140.0" text="Save" />
+                  <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleCancel" prefWidth="140.0" text="Cancel" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane> 
