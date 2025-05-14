@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tn.esprit.controller.GymHomeController;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -60,16 +61,16 @@ public class LoginController {
                 if (user.getRole() == 3) { // Admin
                     loader = new FXMLLoader(getClass().getResource("/BackOffice.fxml"));
                 } else {
-                    loader = new FXMLLoader(getClass().getResource("/Front.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/home.fxml")); // Navigate to home.fxml
                 }
-                
+
                 Parent root = loader.load();
-                
-                if (user.getRole() != 3) { // If not admin, set the user in FrontController
-                    FrontController frontController = loader.getController();
-                    frontController.setUser(user);
+
+                if (user.getRole() != 3) { // If not admin, set the user in GymHomeController
+                    GymHomeController gymHomeController = loader.getController();
+                    gymHomeController.setUser(user);
                 }
-                
+
                 Stage stage = (Stage) btnLogin.getScene().getWindow();
                 stage.setScene(new Scene(root));
             } catch (IOException e) {
