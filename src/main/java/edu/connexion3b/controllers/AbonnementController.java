@@ -4,6 +4,7 @@ import edu.connexion3b.entities.Abonnement;
 import edu.connexion3b.services.AbonnementService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -268,6 +269,18 @@ public class AbonnementController implements Initializable {
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Erreur", 
                     "Impossible d'ouvrir la fenêtre de paiement: " + e.getMessage());
+        }
+    }
+    @FXML
+    private void navigateToHome(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Home");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
