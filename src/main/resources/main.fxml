@@ -1,366 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GestionMain">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.GestionMain" style="-fx-background-color: #f5f7fa;" prefWidth="1200" prefHeight="800">
+    <!-- Top Navigation Bar - Matching Homepage Design -->
     <top>
-        <Label alignment="CENTER" prefHeight="59.0" prefWidth="1500000.0" style="-fx-background-color: #096478;" text="Sport" textFill="WHITE" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="System Bold" size="36.0" />
-            </font>
-        </Label>
+        <HBox style="-fx-background-color: linear-gradient(to right, #3498db, #2c3e50); -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);">
+            <Label text="SMART GYM" style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold; -fx-font-family: 'Arial Rounded MT Bold';"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Déconnexion" onAction="#navigateToHome"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 5; -fx-padding: 5 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);"/>
+        </HBox>
     </top>
+
     <left>
-        <VBox cacheShape="false" prefHeight="438.0" prefWidth="185.0" BorderPane.alignment="CENTER">
-            <children>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #26A4AE;">
-                    <children>
-                        <Button fx:id="Materiel" layoutX="20.0" layoutY="29.0" mnemonicParsing="false" onAction="#afficherMateriel" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #06D1C7;" text="Materiel" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #26A4AE;">
-                    <children>
-                        <Button fx:id="Salle" layoutX="20.0" layoutY="29.0" mnemonicParsing="false" onAction="#afficherSalle" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #06D1C7;" text="Salle" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #26A4AE;">
-                    <children>
-                        <Button fx:id="AI" layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#afficherAI" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #06D1C7;" text="AI Assistant" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="21.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #26A4AE;">
-                    <children>
-                        <Button layoutX="20.0" layoutY="21.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #06D1C7;" text="Button" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="navigateHomeButton" layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#navigateToHome" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #06D1C7;" text="Go to Home" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </AnchorPane>
-            </children>
+        <VBox spacing="50" style="-fx-background-color: #26A4AE; -fx-padding: 10;">
+            <!-- Material Button -->
+            <Button fx:id="Materiel" text="Matériel" onAction="#afficherMateriel"
+                    style="-fx-background-color: transparent, linear-gradient(to bottom, #06D1C7, #04b5ab); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 160; -fx-pref-height: 60; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-margin: 0 0 10 0;"/>
+
+            <!-- Room Button -->
+            <Button fx:id="Salle" text="Salle" onAction="#afficherSalle"
+                    style="-fx-background-color: transparent, linear-gradient(to bottom, #06D1C7, #04b5ab); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 160; -fx-pref-height: 60; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-margin: 0 0 10 0;"/>
+
+            <!-- AI Assistant Button -->
+            <Button fx:id="AI" text="Assistant IA" onAction="#afficherAI"
+                    style="-fx-background-color: transparent, linear-gradient(to bottom, #06D1C7, #04b5ab); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 160; -fx-pref-height: 60; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-margin: 0 0 10 0;"/>
+
+            <!-- Home Button -->
+            <Button text="Retour à l'accueil" onAction="#navigateToHome"
+                    style="-fx-background-color: transparent, linear-gradient(to bottom, #e74c3c, #c0392b); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 160; -fx-pref-height: 60; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
         </VBox>
     </left>
-    <center>
-        <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <AnchorPane fx:id="anchorBienvenue" prefHeight="200.0" prefWidth="200.0" visible="false">
-                    <children>
-                        <Label alignment="CENTER" layoutX="106.0" layoutY="119.0" prefHeight="159.0" prefWidth="441.0" text="Bienvenue!" textFill="#31d6cd">
-                            <font>
-                                <Font name="System Bold" size="45.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <TabPane fx:id="materielTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" visible="false">
-                    <tabs>
-                        <Tab text="Ajouter">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <TextField fx:id="materielAjouterNom" layoutX="332.0" layoutY="58.0" prefHeight="39.0" prefWidth="169.0">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </TextField>
-                                        <Button fx:id="materielAjouterButton" layoutX="211.0" layoutY="233.0" mnemonicParsing="false" onAction="#materielAjouter" prefHeight="67.0" prefWidth="166.0" style="-fx-background-color: #06D1C7;" text="Ajouter" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font>
-                                        </Button>
-                                        <Label layoutX="133.0" layoutY="121.0" prefHeight="27.0" prefWidth="171.0" text="Date Maintenance :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="133.0" layoutY="64.0" prefHeight="27.0" prefWidth="112.0" text="Nom :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="238.0" layoutY="26.0" prefHeight="27.0" prefWidth="112.0" text="Materiel" textAlignment="CENTER">
-                                            <font>
-                                                <Font name="System Bold" size="22.0" />
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="materielAjouterAffichage" alignment="CENTER" layoutX="56.0" layoutY="181.0" prefHeight="47.0" prefWidth="477.0" textFill="RED">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <DatePicker fx:id="materielAjouterDate" layoutX="332.0" layoutY="113.0" prefHeight="44.0" prefWidth="170.0" />
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Modifier">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <TextField fx:id="materielModifierNomTextField" layoutX="446.0" layoutY="90.0" prefHeight="38.0" prefWidth="183.0">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </TextField>
-                                        <Label layoutX="65.0" layoutY="161.0" prefHeight="27.0" prefWidth="167.0" text="Date Maintenance :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="65.0" layoutY="95.0" prefHeight="27.0" prefWidth="112.0" text="Nom :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="30.0" prefHeight="27.0" prefWidth="112.0" text="ID Materiel :" textAlignment="CENTER">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="materielModifierAffichage" alignment="CENTER" layoutX="63.0" layoutY="205.0" prefHeight="47.0" prefWidth="474.0" textFill="RED">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <TextField fx:id="materielModifierId" layoutX="191.0" layoutY="23.0" prefHeight="42.0" prefWidth="169.0">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </TextField>
-                                        <Label fx:id="materielModifierDateLabel" layoutX="244.0" layoutY="161.0" prefHeight="30.0" prefWidth="193.0">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Button fx:id="materielModifierButton" layoutX="217.0" layoutY="261.0" mnemonicParsing="false" onAction="#materielModifier" prefHeight="67.0" prefWidth="166.0" style="-fx-background-color: #06D1C7;" text="Modifier" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font>
-                                        </Button>
-                                        <Label fx:id="materielModifierNomLabel" layoutX="244.0" layoutY="94.0" prefHeight="30.0" prefWidth="193.0">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Button fx:id="materielModifierSelect" layoutX="384.0" layoutY="22.0" mnemonicParsing="false" onAction="#materielSelect" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #06D1C7;" text="Select" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font>
-                                        </Button>
-                                        <Button fx:id="materielModifierSupprimer" layoutX="500.0" layoutY="22.0" mnemonicParsing="false" onAction="#materielSupprimer" prefHeight="44.0" prefWidth="139.0" style="-fx-background-color: #06D1C7;" text="Supprimer" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font>
-                                        </Button>
-                                        <DatePicker fx:id="materielModifierDate" layoutX="446.0" layoutY="153.0" prefHeight="44.0" prefWidth="183.0" />
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Lister">
-                            <content>
-                                <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                    <bottom>
-                                        <AnchorPane prefHeight="43.0" prefWidth="653.0" BorderPane.alignment="CENTER">
-                                            <children>
-                                                <TextField fx:id="materielListerId" layoutX="14.0" layoutY="9.0" prefHeight="25.0" prefWidth="513.0">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </TextField>
-                                                <Button fx:id="materielListerButton" layoutX="537.0" layoutY="5.0" mnemonicParsing="false" onAction="#materielLister" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #06D1C7;" text="Actualiser" textFill="WHITE">
-                                                    <font>
-                                                        <Font name="System Bold" size="16.0" />
-                                                    </font>
-                                                </Button>
-                                            </children></AnchorPane>
-                                    </bottom>
-                                    <center>
-                                        <TableView fx:id="materielTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                            <columns>
-                                                <TableColumn fx:id="idMaterielCol" prefWidth="75.0" text="ID" />
-                                                <TableColumn fx:id="nomMaterielCol" prefWidth="165.0" text="Nom" />
-                                                <TableColumn fx:id="dateMaterielCol" minWidth="3.0" prefWidth="378.0" text="Date Maintenance" />
-                                            </columns>
-                                        </TableView>
-                                    </center>
-                                </BorderPane>
-                            </content>
-                        </Tab>
-                    </tabs>
-                </TabPane>
-                <TabPane fx:id="salleTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" visible="false">
-                    <tabs>
-                        <Tab text="Ajouter">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <TextField fx:id="SalleAjouterNom" layoutX="410.0" layoutY="78.0" prefHeight="39.0" prefWidth="169.0">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font></TextField>
-                                        <Button fx:id="SalleAjouterButton" layoutX="244.0" layoutY="292.0" mnemonicParsing="false" onAction="#ajouterSalle" prefHeight="67.0" prefWidth="166.0" style="-fx-background-color: #06D1C7;" text="Ajouter" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font></Button>
-                                        <Label layoutX="133.0" layoutY="166.0" prefHeight="27.0" prefWidth="161.0" text="Nombre Max :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <Label layoutX="133.0" layoutY="84.0" prefHeight="27.0" prefWidth="112.0" text="Nom :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="271.0" layoutY="26.0" prefHeight="27.0" prefWidth="112.0" text="Salle" textAlignment="CENTER">
-                                            <font>
-                                                <Font name="System Bold" size="22.0" />
-                                            </font></Label>
-                                        <Spinner fx:id="SalleAjouterNbrMax" editable="true" layoutX="408.0" layoutY="162.0" prefHeight="35.0" prefWidth="173.0" />
-                                        <Label fx:id="SalleAjouterAffichage" alignment="CENTER" layoutX="89.0" layoutY="215.0" prefHeight="47.0" prefWidth="477.0" textFill="RED">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font></Label>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Modifier">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <TextField fx:id="SalleModifierNomTextField" layoutX="371.0" layoutY="95.0" prefHeight="39.0" prefWidth="191.0">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font></TextField>
-                                        <Label layoutX="65.0" layoutY="161.0" prefHeight="27.0" prefWidth="127.0" text="Nombre Max :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <Label layoutX="65.0" layoutY="95.0" prefHeight="27.0" prefWidth="112.0" text="Nom :">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="30.0" prefHeight="27.0" prefWidth="112.0" text="ID Salle :" textAlignment="CENTER">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <Label fx:id="SalleModifierAffichage" alignment="CENTER" layoutX="63.0" layoutY="214.0" prefHeight="47.0" prefWidth="474.0" textFill="RED">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <TextField fx:id="SalleModifierID" layoutX="177.0" layoutY="24.0" prefHeight="12.0" prefWidth="157.0">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font></TextField>
-                                        <Label fx:id="SalleModifierNbrMaxLabel" layoutX="204.0" layoutY="160.0" prefHeight="30.0" prefWidth="144.0">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <Label fx:id="SalleModifierNomLabel" layoutX="210.0" layoutY="94.0" prefHeight="30.0" prefWidth="131.0">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font></Label>
-                                        <Spinner fx:id="SalleModifierNbrMaxSpinner" editable="true" layoutX="371.0" layoutY="157.0" prefHeight="35.0" prefWidth="191.0" />
-                                        <Button fx:id="SalleModifierSelect" layoutX="363.0" layoutY="24.0" mnemonicParsing="false" onAction="#SalleSelect" prefHeight="44.0" prefWidth="97.0" style="-fx-background-color: #06D1C7;" text="Select" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font>
-                                        </Button>
-                                        <Button fx:id="SalleModifierSupprimer" layoutX="475.0" layoutY="24.0" mnemonicParsing="false" onAction="#SalleSupprimer" prefHeight="44.0" prefWidth="139.0" style="-fx-background-color: #06D1C7;" text="Supprimer" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font>
-                                        </Button>
-                                        <Button fx:id="SalleModifierButton" layoutX="217.0" layoutY="290.0" mnemonicParsing="false" onAction="#SalleModifier" prefHeight="67.0" prefWidth="166.0" style="-fx-background-color: #06D1C7;" text="Modifier" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="20.0" />
-                                            </font>
-                                        </Button>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Lister">
-                            <content>
-                                <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                    <bottom>
-                                        <AnchorPane prefHeight="43.0" prefWidth="653.0" BorderPane.alignment="CENTER">
-                                            <children>
-                                                <TextField fx:id="SalleListerId" layoutX="14.0" layoutY="6.0" prefHeight="25.0" prefWidth="513.0">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </TextField>
-                                                <Button fx:id="SalleListerButton" layoutX="537.0" layoutY="5.0" mnemonicParsing="false" onAction="#SalleLister" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #06D1C7;" text="Actualiser" textFill="WHITE">
-                                                    <font>
-                                                        <Font name="System Bold" size="16.0" />
-                                                    </font>
-                                                </Button>
-                                            </children>
-                                        </AnchorPane>
-                                    </bottom>
-                                    <center>
-                                        <TableView fx:id="salleTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                            <columns>
-                                                <TableColumn fx:id="idSalleCol" prefWidth="75.0" text="ID" />
-                                                <TableColumn fx:id="nomSalleCol" prefWidth="165.0" text="Nom" />
-                                                <TableColumn fx:id="NbrMaxSalleCol" minWidth="3.0" prefWidth="378.0" text="Nombre Max" />
-                                            </columns>
-                                        </TableView>
-                                    </center>
-                                </BorderPane>
-                            </content>
-                        </Tab>
-                    </tabs>
-                </TabPane>
-                <AnchorPane fx:id="chatbox" prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                        <Label layoutX="227.0" layoutY="147.0" text="chatbox" />
-                        <TextArea fx:id="chatboxTextArea" wrapText="true" editable="false" layoutX="12.0" layoutY="14.0" prefHeight="368.0" prefWidth="629.0" />
-                        <Button fx:id="envoyerButton" layoutX="544.0" layoutY="390.0" mnemonicParsing="false" onAction="#envoyerMessage" prefHeight="34.0" prefWidth="95.0" style="-fx-background-color: #06D1C7;" text="Envoyer" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Button>
 
-                        <TextField fx:id="chatboxInput" layoutX="15.0" layoutY="390.0" prefHeight="32.0" prefWidth="510.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </TextField>
-                    </children>
-                </AnchorPane>
-            </children>
+    <center>
+        <StackPane>
+            <!-- Welcome Panel -->
+            <AnchorPane fx:id="anchorBienvenue" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0;">
+                <Label text="Bienvenue!" layoutX="300" layoutY="150" style="-fx-text-fill: #31d6cd; -fx-font-size: 45; -fx-font-weight: bold;"/>
+            </AnchorPane>
+
+            <!-- Material Management TabPane -->
+            <TabPane fx:id="materielTabPane" visible="false" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0;">
+                <tabs>
+                    <Tab text="Ajouter Matériel">
+                        <content>
+                            <VBox spacing="15" style="-fx-padding: 20;">
+                                <Label text="Ajouter du Matériel" style="-fx-font-size: 22; -fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+
+                                <GridPane hgap="10" vgap="10">
+                                    <columnConstraints>
+                                        <ColumnConstraints prefWidth="150"/>
+                                        <ColumnConstraints prefWidth="300"/>
+                                    </columnConstraints>
+
+                                    <Label text="Nom:" GridPane.rowIndex="0" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <TextField fx:id="materielAjouterNom" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Entrez le nom du matériel"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+
+                                    <Label text="Date Maintenance:" GridPane.rowIndex="1" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <DatePicker fx:id="materielAjouterDate" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                                style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+                                </GridPane>
+
+                                <Label fx:id="materielAjouterAffichage" style="-fx-text-fill: #e74c3c; -fx-font-size: 16;"/>
+
+                                <Button fx:id="materielAjouterButton" text="Ajouter" onAction="#materielAjouter"
+                                        style="-fx-background-color: #2ecc71, linear-gradient(#2ecc71, #27ae60); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 40; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="Modifier Matériel">
+                        <content>
+                            <VBox spacing="15" style="-fx-padding: 20;">
+                                <Label text="Modifier du Matériel" style="-fx-font-size: 22; -fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+
+                                <HBox spacing="10">
+                                    <TextField fx:id="materielModifierId" promptText="ID Matériel"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+                                    <Button fx:id="materielModifierSelect" text="Sélectionner" onAction="#materielSelect"
+                                            style="-fx-background-color: #3498db, linear-gradient(#3498db, #2980b9); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-height: 30; -fx-background-radius: 5;"/>
+                                    <Button fx:id="materielModifierSupprimer" text="Supprimer" onAction="#materielSupprimer"
+                                            style="-fx-background-color: #e74c3c, linear-gradient(#e74c3c, #c0392b); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-height: 30; -fx-background-radius: 5;"/>
+                                </HBox>
+
+                                <GridPane hgap="10" vgap="10">
+                                    <columnConstraints>
+                                        <ColumnConstraints prefWidth="150"/>
+                                        <ColumnConstraints prefWidth="300"/>
+                                    </columnConstraints>
+
+                                    <Label text="Nom:" GridPane.rowIndex="0" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <TextField fx:id="materielModifierNomTextField" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+
+                                    <Label text="Date Maintenance:" GridPane.rowIndex="1" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <DatePicker fx:id="materielModifierDate" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                                style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+                                </GridPane>
+
+                                <Label fx:id="materielModifierAffichage" style="-fx-text-fill: #e74c3c; -fx-font-size: 16;"/>
+
+                                <Button fx:id="materielModifierButton" text="Modifier" onAction="#materielModifier"
+                                        style="-fx-background-color: #3498db, linear-gradient(#3498db, #2980b9); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 40; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="Liste du Matériel">
+                        <content>
+                            <VBox spacing="10" style="-fx-padding: 15;">
+                                <HBox spacing="10">
+                                    <TextField fx:id="materielListerId" promptText="Rechercher par ID"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 20; -fx-padding: 5 15; -fx-pref-width: 300;"/>
+                                    <Button fx:id="materielListerButton" text="Actualiser" onAction="#materielLister"
+                                            style="-fx-background-color: #9b59b6, linear-gradient(#9b59b6, #8e44ad); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-height: 30; -fx-background-radius: 5;"/>
+                                </HBox>
+
+                                <TableView fx:id="materielTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                                    <columns>
+                                        <TableColumn fx:id="idMaterielCol" text="ID" style="-fx-font-weight: bold;"/>
+                                        <TableColumn fx:id="nomMaterielCol" text="Nom" style="-fx-font-weight: bold;"/>
+                                        <TableColumn fx:id="dateMaterielCol" text="Date Maintenance" style="-fx-font-weight: bold;"/>
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+
+            <!-- Room Management TabPane -->
+            <TabPane fx:id="salleTabPane" visible="false" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0;">
+                <tabs>
+                    <Tab text="Ajouter Salle">
+                        <content>
+                            <VBox spacing="15" style="-fx-padding: 20;">
+                                <Label text="Ajouter une Salle" style="-fx-font-size: 22; -fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+
+                                <GridPane hgap="10" vgap="10">
+                                    <columnConstraints>
+                                        <ColumnConstraints prefWidth="150"/>
+                                        <ColumnConstraints prefWidth="300"/>
+                                    </columnConstraints>
+
+                                    <Label text="Nom:" GridPane.rowIndex="0" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <TextField fx:id="SalleAjouterNom" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Entrez le nom de la salle"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+
+                                    <Label text="Nombre Max:" GridPane.rowIndex="1" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <Spinner fx:id="SalleAjouterNbrMax" editable="true" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                             style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+                                </GridPane>
+
+                                <Label fx:id="SalleAjouterAffichage" style="-fx-text-fill: #e74c3c; -fx-font-size: 16;"/>
+
+                                <Button fx:id="SalleAjouterButton" text="Ajouter" onAction="#ajouterSalle"
+                                        style="-fx-background-color: #2ecc71, linear-gradient(#2ecc71, #27ae60); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 40; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="Modifier Salle">
+                        <content>
+                            <VBox spacing="15" style="-fx-padding: 20;">
+                                <Label text="Modifier une Salle" style="-fx-font-size: 22; -fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+
+                                <HBox spacing="10">
+                                    <TextField fx:id="SalleModifierID" promptText="ID Salle"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+                                    <Button fx:id="SalleModifierSelect" text="Sélectionner" onAction="#SalleSelect"
+                                            style="-fx-background-color: #3498db, linear-gradient(#3498db, #2980b9); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-height: 30; -fx-background-radius: 5;"/>
+                                    <Button fx:id="SalleModifierSupprimer" text="Supprimer" onAction="#SalleSupprimer"
+                                            style="-fx-background-color: #e74c3c, linear-gradient(#e74c3c, #c0392b); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-height: 30; -fx-background-radius: 5;"/>
+                                </HBox>
+
+                                <GridPane hgap="10" vgap="10">
+                                    <columnConstraints>
+                                        <ColumnConstraints prefWidth="150"/>
+                                        <ColumnConstraints prefWidth="300"/>
+                                    </columnConstraints>
+
+                                    <Label text="Nom:" GridPane.rowIndex="0" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <TextField fx:id="SalleModifierNomTextField" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+
+                                    <Label text="Nombre Max:" GridPane.rowIndex="1" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+                                    <Spinner fx:id="SalleModifierNbrMaxSpinner" editable="true" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                             style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+                                </GridPane>
+
+                                <Label fx:id="SalleModifierAffichage" style="-fx-text-fill: #e74c3c; -fx-font-size: 16;"/>
+
+                                <Button fx:id="SalleModifierButton" text="Modifier" onAction="#SalleModifier"
+                                        style="-fx-background-color: #3498db, linear-gradient(#3498db, #2980b9); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 40; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="Liste des Salles">
+                        <content>
+                            <VBox spacing="10" style="-fx-padding: 15;">
+                                <HBox spacing="10">
+                                    <TextField fx:id="SalleListerId" promptText="Rechercher par ID"
+                                               style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 20; -fx-padding: 5 15; -fx-pref-width: 300;"/>
+                                    <Button fx:id="SalleListerButton" text="Actualiser" onAction="#SalleLister"
+                                            style="-fx-background-color: #9b59b6, linear-gradient(#9b59b6, #8e44ad); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-height: 30; -fx-background-radius: 5;"/>
+                                </HBox>
+
+                                <TableView fx:id="salleTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                                    <columns>
+                                        <TableColumn fx:id="idSalleCol" text="ID" style="-fx-font-weight: bold;"/>
+                                        <TableColumn fx:id="nomSalleCol" text="Nom" style="-fx-font-weight: bold;"/>
+                                        <TableColumn fx:id="NbrMaxSalleCol" text="Nombre Max" style="-fx-font-weight: bold;"/>
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+
+            <!-- AI Chat Panel -->
+            <AnchorPane fx:id="chatbox" visible="false" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0; -fx-padding: 15;">
+                <TextArea fx:id="chatboxTextArea" wrapText="true" editable="false" layoutX="15" layoutY="15"
+                          style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+                <TextField fx:id="chatboxInput" layoutX="15" layoutY="390" promptText="Tapez votre message ici..."
+                           style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 20; -fx-padding: 5 15;"/>
+                <Button fx:id="envoyerButton" text="Envoyer" onAction="#envoyerMessage" layoutX="540" layoutY="390"
+                        style="-fx-background-color: #2ecc71, linear-gradient(#2ecc71, #27ae60); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-height: 30; -fx-background-radius: 5;"/>
+            </AnchorPane>
         </StackPane>
     </center>
+
+    <!-- Bottom Status Bar - Matching Homepage Design -->
+    <bottom>
+        <HBox style="-fx-background-color: linear-gradient(to right, #2c3e50, #3498db); -fx-padding: 12;" alignment="CENTER">
+            <Label text="© 2025 Système de Gestion de Gymnase | Gestion des Matériels et Salles"
+                   style="-fx-text-fill: white; -fx-font-size: 12; -fx-font-style: italic;"/>
+        </HBox>
+    </bottom>
 </BorderPane>

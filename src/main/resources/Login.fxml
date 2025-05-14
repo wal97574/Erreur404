@@ -3,22 +3,43 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.LoginController">
-   <children>
-      <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <Text fill="#2b579a" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="200.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <TextField fx:id="tfEmail" prefWidth="300.0" promptText="Email" />
-            <PasswordField fx:id="tfPassword" prefWidth="300.0" promptText="Password" />
-            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefWidth="300.0" text="Login" />
-            <Hyperlink fx:id="linkForgotPassword" onAction="#handleForgotPassword" text="Forgot Password?" />
-            <Hyperlink fx:id="linkRegister" onAction="#handleRegisterLink" text="Don't have an account? Register here" />
-         </children>
-      </VBox>
-   </children>
-</AnchorPane> 
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.LoginController" style="-fx-background-color: #f5f7fa;">
+
+   <!-- Top Navigation Bar -->
+   <top>
+      <HBox style="-fx-background-color: linear-gradient(to right, #3498db, #2c3e50); -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);">
+         <Label text="SMART GYM" style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold; -fx-font-family: 'Arial Rounded MT Bold';"/>
+         <Region HBox.hgrow="ALWAYS"/>
+      </HBox>
+   </top>
+
+   <!-- Center Content -->
+   <center>
+      <StackPane>
+         <VBox alignment="CENTER" spacing="20" style="-fx-padding: 40;">
+            <Text text="Bienvenue" style="-fx-font-size: 36; -fx-font-weight: bold; -fx-fill: linear-gradient(to right, #3498db, #2c3e50); -fx-font-family: 'Arial Rounded MT Bold';"/>
+            <Text text="Connectez-vous pour accéder à votre espace" style="-fx-font-size: 16; -fx-fill: #7f8c8d; -fx-font-style: italic;"/>
+
+            <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+               <TextField fx:id="tfEmail" promptText="Email" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 8; -fx-padding: 10; -fx-font-size: 14;" prefWidth="300"/>
+               <PasswordField fx:id="tfPassword" promptText="Mot de passe" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 8; -fx-padding: 10; -fx-font-size: 14;" prefWidth="300"/>
+               <Button fx:id="btnLogin" text="Se connecter" onAction="#handleLogin"
+                       style="-fx-background-color: #3498db, linear-gradient(#3498db, #2980b9); -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-background-radius: 8; -fx-pref-width: 300; -fx-pref-height: 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
+            </VBox>
+
+            <Hyperlink fx:id="linkForgotPassword" onAction="#handleForgotPassword" text="Mot de passe oublié ?" style="-fx-text-fill: #3498db; -fx-font-size: 12;"/>
+            <Hyperlink fx:id="linkRegister" onAction="#handleRegisterLink" text="Pas encore inscrit ? Créez un compte" style="-fx-text-fill: #3498db; -fx-font-size: 12;"/>
+         </VBox>
+      </StackPane>
+   </center>
+
+   <!-- Bottom Status Bar -->
+   <bottom>
+      <HBox style="-fx-background-color: linear-gradient(to right, #2c3e50, #3498db); -fx-padding: 12;" alignment="CENTER">
+         <Label text="© 2025 Système de Gestion de Gymnase | Solutions Fitness Premium"
+                style="-fx-text-fill: white; -fx-font-size: 12; -fx-font-style: italic;"/>
+      </HBox>
+   </bottom>
+</BorderPane>
