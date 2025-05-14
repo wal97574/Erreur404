@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.LoginController">
+   <children>
+      <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Text fill="#2b579a" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="tfEmail" prefWidth="300.0" promptText="Email" />
+            <PasswordField fx:id="tfPassword" prefWidth="300.0" promptText="Password" />
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefWidth="300.0" text="Login" />
+            <Hyperlink fx:id="linkForgotPassword" onAction="#handleForgotPassword" text="Forgot Password?" />
+            <Hyperlink fx:id="linkRegister" onAction="#handleRegisterLink" text="Don't have an account? Register here" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane> 

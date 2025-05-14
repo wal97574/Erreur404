@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.RegisterController">
+   <children>
+      <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Text fill="#2b579a" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="tfNom" prefWidth="300.0" promptText="Nom" />
+            <TextField fx:id="tfPrenom" prefWidth="300.0" promptText="Prenom" />
+            <TextField fx:id="tfEmail" prefWidth="300.0" promptText="Email" />
+            <PasswordField fx:id="tfPassword" prefWidth="300.0" promptText="Password" />
+            <TextField fx:id="tfTelephone" prefWidth="300.0" promptText="Telephone" />
+            <ComboBox fx:id="cbSexe" prefWidth="300.0" promptText="Select Sexe" />
+            <ComboBox fx:id="cbRole" prefWidth="300.0" promptText="Select Role" />
+            <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#handleRegister" prefWidth="300.0" text="Register" />
+            <Hyperlink fx:id="linkLogin" onAction="#handleLoginLink" text="Already have an account? Login here" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane> 
