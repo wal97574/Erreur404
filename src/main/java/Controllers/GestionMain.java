@@ -9,13 +9,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -23,6 +27,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import Services.ChatBot;
+import javafx.stage.Stage;
 
 public class GestionMain {
     private ServiceMateriel serviceMateriel=new ServiceMateriel();
@@ -368,5 +373,17 @@ public class GestionMain {
         System.out.println(ChatBot.sendMessage(chatboxInput.getText()));
         chatboxInput.clear();
 
+    }
+    @FXML
+    private void navigateToHome(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Home");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

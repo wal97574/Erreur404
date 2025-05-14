@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class GymHomeController {
 
     private Utilisateur user;
@@ -70,6 +72,18 @@ public class GymHomeController {
             stage.setTitle("Login");
             stage.show();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void navigateToSalles(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Salles Management");
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
