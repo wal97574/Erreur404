@@ -1,74 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.connexion3b.controllers.AbonnementController"
-            prefHeight="600.0" prefWidth="800.0"
-            styleClass="main-container" stylesheets="@styles/abonnement.css">
+<BorderPane prefHeight="800" prefWidth="1200" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3b.controllers.AbonnementController">
+
+    <!-- Top Navigation Bar -->
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="top-bar">
-            <Button fx:id="backBtn" text="Back" onAction="#navigateToHome" styleClass="back-button" />
-            <Label text="Gestion des Abonnements" styleClass="title-label">
-                <font>
-                    <Font name="System Bold" size="24.0" />
-                </font>
-            </Label>
+        <HBox style="-fx-background-color: linear-gradient(to right, #3498db, #2c3e50); -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);">
+            <Label style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold; -fx-font-family: 'Arial Rounded MT Bold';" text="GESTION DES ABONNEMENTS" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#navigateToHome" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 5; -fx-padding: 5 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" text="Retour à l'accueil" />
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="20" styleClass="content-container">
-            <padding>
-                <Insets top="10" right="20" bottom="10" left="20" />
-            </padding>
-
-            <GridPane hgap="10" vgap="15">
+        <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <!-- Form Section -->
+            <GridPane hgap="15" vgap="15">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="150" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="200" prefWidth="300" />
+                    <ColumnConstraints prefWidth="200" />
+                    <ColumnConstraints prefWidth="400" />
                 </columnConstraints>
 
-                <Label text="Nom:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                <TextField fx:id="nomField" styleClass="form-field" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                <!-- Row 1: Nom -->
+                <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Nom:" GridPane.rowIndex="0" />
+                <TextField fx:id="nomField" promptText="Entrez le nom" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label text="Type:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                <ComboBox fx:id="typeCombo" styleClass="form-field" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                <!-- Row 2: Type -->
+                <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Type:" GridPane.rowIndex="1" />
+                <ComboBox fx:id="typeCombo" prefHeight="37.0" prefWidth="463.0" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Durée (jours):" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                <TextField fx:id="dureeField" styleClass="form-field" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                <!-- Row 3: Durée -->
+                <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Durée (jours):" GridPane.rowIndex="2" />
+                <TextField fx:id="dureeField" promptText="Entrez la durée en jours" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label text="Prix:" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-                <TextField fx:id="prixField" styleClass="form-field" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                <!-- Row 4: Prix -->
+                <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Prix:" GridPane.rowIndex="3" />
+                <TextField fx:id="prixField" promptText="Entrez le prix" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="Statut:" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-                <HBox spacing="15" GridPane.rowIndex="4" GridPane.columnIndex="1">
-                    <RadioButton fx:id="etudiantRadio" text="Étudiant" styleClass="status-radio" />
-                    <RadioButton fx:id="nonEtudiantRadio" text="Non-étudiant" styleClass="status-radio" selected="true" />
+                <!-- Row 5: Statut -->
+                <Label style="-fx-text-fill: #34495e; -fx-font-weight: bold;" text="Statut:" GridPane.rowIndex="4" />
+                <HBox spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <RadioButton fx:id="etudiantRadio" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="Étudiant" />
+                    <RadioButton fx:id="nonEtudiantRadio" selected="true" style="-fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="Non-étudiant" />
                 </HBox>
 
-                <HBox alignment="CENTER" spacing="15" GridPane.rowIndex="5" GridPane.columnIndex="1">
-                    <Button fx:id="ajouterBtn" text="Ajouter" styleClass="add-button" />
-                    <Button fx:id="modifierBtn" text="Modifier" styleClass="edit-button" />
-                    <Button fx:id="supprimerBtn" text="Supprimer" styleClass="delete-button" />
-                    <Button fx:id="clearBtn" text="Effacer" styleClass="clear-button" />
-                    <Button fx:id="payerBtn" text="Payer" styleClass="pay-button" />
+                <!-- Row 6: Action Buttons -->
+                <HBox alignment="CENTER" spacing="20" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <Button fx:id="ajouterBtn" style="-fx-background-color: #2ecc71, linear-gradient(#2ecc71, #27ae60); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 50; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Ajouter" />
+
+                    <Button fx:id="modifierBtn" style="-fx-background-color: #3498db, linear-gradient(#3498db, #2980b9); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 50; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Modifier" />
+
+                    <Button fx:id="supprimerBtn" style="-fx-background-color: #e74c3c, linear-gradient(#e74c3c, #c0392b); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 50; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Supprimer" />
+
+                    <Button fx:id="clearBtn" style="-fx-background-color: #f39c12, linear-gradient(#f39c12, #e67e22); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 50; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Effacer" />
+
+                    <Button fx:id="payerBtn" style="-fx-background-color: #9b59b6, linear-gradient(#9b59b6, #8e44ad); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 150; -fx-pref-height: 50; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Payer" />
                 </HBox>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
 
-            <TableView fx:id="abonnementTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <!-- Table View -->
+            <TableView fx:id="abonnementTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
                 <columns>
-                    <TableColumn fx:id="idCol" text="ID" prefWidth="50" />
-                    <TableColumn fx:id="nomCol" text="Nom" prefWidth="200" />
-                    <TableColumn fx:id="typeCol" text="Type" prefWidth="150" />
-                    <TableColumn fx:id="dureeCol" text="Durée (jours)" prefWidth="150" />
-                    <TableColumn fx:id="prixCol" text="Prix" prefWidth="100" />
+                    <TableColumn fx:id="idCol" style="-fx-font-weight: bold;" text="ID" />
+                    <TableColumn fx:id="nomCol" prefWidth="160.0" style="-fx-font-weight: bold;" text="Nom" />
+                    <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="192.0" style="-fx-font-weight: bold;" text="Type" />
+                    <TableColumn fx:id="dureeCol" prefWidth="212.0" style="-fx-font-weight: bold;" text="Durée (jours)" />
+                    <TableColumn fx:id="prixCol" prefWidth="203.0" style="-fx-font-weight: bold;" text="Prix" />
                 </columns>
             </TableView>
         </VBox>
     </center>
+
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #2c3e50, #3498db); -fx-padding: 12;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 12; -fx-font-style: italic;" text="© 2025 Système de Gestion de Gymnase | Gestion des Abonnements" />
+        </HBox>
+    </bottom>
 </BorderPane>

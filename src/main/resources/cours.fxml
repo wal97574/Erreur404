@@ -2,31 +2,93 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="tn.esprit.controller.CoursController"
-            prefWidth="600" prefHeight="600">
-    <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #ecf0f1;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <TextField fx:id="descriptionField" promptText="Description" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <TextField fx:id="trainerIdField" promptText="Trainer ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <TextField fx:id="maxParticipantsField" promptText="Max Participants" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <TextField fx:id="durationField" promptText="Duration Minutes" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <HBox spacing="10">
-            <Button text="Back to Home" onAction="#handleBackToHome" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-            <Button text="Add Cours" onAction="#handleAddCours" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
-            <Button text="Update Cours" onAction="#handleUpdateCours" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
-            <Button text="Delete Cours" onAction="#handleDeleteCours" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+            style="-fx-background-color: #f5f7fa;">
+
+    <!-- Barre de navigation supérieure -->
+    <HBox style="-fx-background-color: linear-gradient(to right, #3498db, #2c3e50); -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);"
+          AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <Label text="GESTION DES COURS" style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold; -fx-font-family: 'Arial Rounded MT Bold';"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Retour à l'accueil" onAction="#handleBackToHome"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 5; -fx-padding: 5 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);"/>
+    </HBox>
+
+    <!-- Contenu central -->
+    <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
+          AnchorPane.topAnchor="70" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <!-- Section du formulaire -->
+        <Label text="Formulaire de gestion des cours" style="-fx-font-size: 18; -fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="150"/>
+                <ColumnConstraints prefWidth="300"/>
+            </columnConstraints>
+
+            <rowConstraints>
+                <RowConstraints prefHeight="35"/>
+                <RowConstraints prefHeight="35"/>
+                <RowConstraints prefHeight="35"/>
+                <RowConstraints prefHeight="35"/>
+                <RowConstraints prefHeight="35"/>
+            </rowConstraints>
+
+            <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+            <TextField fx:id="descriptionField" promptText="Entrez la description" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                       style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+
+            <Label text="ID Entraîneur:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+            <TextField fx:id="trainerIdField" promptText="Entrez l'ID de l'entraîneur" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+
+            <Label text="Participants max:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+            <TextField fx:id="maxParticipantsField" promptText="Entrez le nombre max de participants" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+
+            <Label text="Durée (minutes):" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-text-fill: #34495e; -fx-font-weight: bold;"/>
+            <TextField fx:id="durationField" promptText="Entrez la durée en minutes" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                       style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 5;"/>
+        </GridPane>
+
+        <!-- Boutons d'action -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="Ajouter" onAction="#handleAddCours"
+                    style="-fx-background-color: #2ecc71, linear-gradient(#2ecc71, #27ae60); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 120; -fx-pref-height: 40; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
+
+            <Button text="Modifier" onAction="#handleUpdateCours"
+                    style="-fx-background-color: #3498db, linear-gradient(#3498db, #2980b9); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 120; -fx-pref-height: 40; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
+
+            <Button text="Supprimer" onAction="#handleDeleteCours"
+                    style="-fx-background-color: #e74c3c, linear-gradient(#e74c3c, #c0392b); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-pref-width: 120; -fx-pref-height: 40; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);"/>
         </HBox>
-        <TextField fx:id="searchField" promptText="Search..." style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
-        <TableView fx:id="coursTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7;">
+
+        <!-- Barre de recherche -->
+        <TextField fx:id="searchField" promptText="Rechercher..."
+                   style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 20; -fx-padding: 5 15; -fx-pref-width: 300;"/>
+
+        <!-- TableView -->
+        <TableView fx:id="coursTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
             <columns>
-                <TableColumn fx:id="idColumn" text="ID" />
-                <TableColumn fx:id="descriptionColumn" text="Description" />
-                <TableColumn fx:id="trainerIdColumn" text="Trainer ID" />
-                <TableColumn fx:id="maxParticipantsColumn" text="Max Participants" />
-                <TableColumn fx:id="durationColumn" text="Duration (Minutes)" />
-                <TableColumn fx:id="pdfColumn" text="Actions" />
+                <TableColumn fx:id="idColumn" text="ID" style="-fx-font-weight: bold;"/>
+                <TableColumn fx:id="descriptionColumn" text="Description" style="-fx-font-weight: bold;"/>
+                <TableColumn fx:id="trainerIdColumn" text="ID Entraîneur" style="-fx-font-weight: bold;"/>
+                <TableColumn fx:id="maxParticipantsColumn" text="Participants max" style="-fx-font-weight: bold;"/>
+                <TableColumn fx:id="durationColumn" text="Durée (minutes)" style="-fx-font-weight: bold;"/>
+                <TableColumn fx:id="pdfColumn" text="Actions" style="-fx-font-weight: bold;"/>
             </columns>
         </TableView>
     </VBox>
+
+    <!-- Barre de statut inférieure -->
+    <HBox style="-fx-background-color: linear-gradient(to right, #2c3e50, #3498db); -fx-padding: 12;" alignment="CENTER"
+          AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <Label text="© 2025 Système de Gestion de Gymnase | Gestion des Cours"
+               style="-fx-text-fill: white; -fx-font-size: 12; -fx-font-style: italic;"/>
+    </HBox>
 </AnchorPane>
