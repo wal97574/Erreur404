@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -190,14 +191,15 @@ public class CoursController {
     }
 
     @FXML
-    private void handleBackToHome() {
+    private void handleBackToHome(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
-            Parent homeRoot = loader.load();
-            Stage stage = (Stage) coursTable.getScene().getWindow();
-            stage.setScene(new Scene(homeRoot));
+            Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Home");
+            stage.show();
         } catch (IOException e) {
-            showError("Failed to load the home screen.");
+            e.printStackTrace();
         }
     }
 }
