@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controller.EmploiController">
+    <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #ecf0f1;">
+        <TextField fx:id="coursIdField" promptText="Cours ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="userIdField" promptText="User ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="startTimeField" promptText="Start Date (yyyy-MM-dd)" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="endTimeField" promptText="End Date (yyyy-MM-dd)" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="statusField" promptText="Status" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <HBox spacing="10">
+            <Button text="Back to Home" onAction="#handleBackToHome" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <Button text="Add Emploi" onAction="#handleAddEmploi" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+            <Button text="Update Emploi" onAction="#handleUpdateEmploi" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+            <Button text="Delete Emploi" onAction="#handleDeleteEmploi" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        </HBox>
+        <!-- Add search bar -->
+        <TextField fx:id="searchField" promptText="Search..." style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TableView fx:id="emploiTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7;">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="coursIdColumn" text="Cours ID" />
+                <TableColumn fx:id="userIdColumn" text="User ID" />
+                <TableColumn fx:id="startTimeColumn" text="Start Date" />
+                <TableColumn fx:id="endTimeColumn" text="End Date" />
+                <TableColumn fx:id="statusColumn" text="Status" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

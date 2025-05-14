@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controller.GymHomeController">
+
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox style="-fx-background-color: #3498db; -fx-padding: 15;">
+            <Label text="GYM MANAGEMENT SYSTEM" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Home" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+            <Button text="Cours" onAction="#navigateToCours" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+            <Button text="Emploi" onAction="#navigateToEmploi" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+
+    <!-- Center Content - Welcome Page -->
+    <center>
+        <StackPane>
+            <VBox alignment="CENTER" spacing="30">
+                <!-- Corrected ImageView implementation -->
+                <ImageView fitWidth="200" fitHeight="200" preserveRatio="true">
+                    <Image url="@images/gym.jpg" />
+                </ImageView>
+
+                <Text text="Welcome to Our Gym" style="-fx-font-size: 32; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
+
+                <Text text="Manage your courses and schedules efficiently"
+                      style="-fx-font-size: 18; -fx-fill: #7f8c8d;"/>
+
+                <HBox spacing="20" alignment="CENTER">
+                    <Button text="View Courses" onAction="#navigateToCours"
+                            style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 16; -fx-pref-width: 150; -fx-pref-height: 40;"/>
+                    <Button text="View Schedules" onAction="#navigateToEmploi"
+                            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 16; -fx-pref-width: 150; -fx-pref-height: 40;"/>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox style="-fx-background-color: #34495e; -fx-padding: 10;" alignment="CENTER">
+            <Label text="© 2023 Gym Management System" style="-fx-text-fill: white;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

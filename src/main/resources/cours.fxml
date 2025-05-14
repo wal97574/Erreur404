@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controller.CoursController"
+            prefWidth="600" prefHeight="600">
+    <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #ecf0f1;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <TextField fx:id="descriptionField" promptText="Description" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="trainerIdField" promptText="Trainer ID" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="maxParticipantsField" promptText="Max Participants" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TextField fx:id="durationField" promptText="Duration Minutes" style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <HBox spacing="10">
+            <Button text="Back to Home" onAction="#handleBackToHome" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            <Button text="Add Cours" onAction="#handleAddCours" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+            <Button text="Update Cours" onAction="#handleUpdateCours" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+            <Button text="Delete Cours" onAction="#handleDeleteCours" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        </HBox>
+        <TextField fx:id="searchField" promptText="Search..." style="-fx-background-color: white; -fx-border-color: #bdc3c7;"/>
+        <TableView fx:id="coursTable" style="-fx-background-color: white; -fx-border-color: #bdc3c7;">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="descriptionColumn" text="Description" />
+                <TableColumn fx:id="trainerIdColumn" text="Trainer ID" />
+                <TableColumn fx:id="maxParticipantsColumn" text="Max Participants" />
+                <TableColumn fx:id="durationColumn" text="Duration (Minutes)" />
+                <TableColumn fx:id="pdfColumn" text="Actions" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>
